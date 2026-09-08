@@ -300,19 +300,19 @@ img {
   color: var(--teal-deep);
 }
 
-.hook-copy {
+.motivation-copy {
   display: grid;
   grid-template-columns: 1.1fr 0.9fr;
   gap: 44px;
   margin-bottom: 34px;
 }
 
-.hook-copy p {
+.motivation-copy p {
   margin: 0;
   color: #344456;
 }
 
-.hook-copy p:last-child {
+.motivation-copy p:last-child {
   padding-left: 25px;
   border-left: 3px solid var(--orange);
   font-weight: 700;
@@ -416,6 +416,218 @@ img {
 
 .simulation-section .section-block {
   padding-bottom: 76px;
+}
+
+.experiment-tabs {
+  gap: 0;
+}
+
+.experiment-card-grid {
+  display: grid;
+  width: 100%;
+  height: auto !important;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+  padding: 0;
+  border-radius: 0;
+  background: transparent;
+}
+
+.experiment-card {
+  display: grid;
+  position: relative;
+  height: auto !important;
+  min-height: 188px;
+  grid-template-columns: 42px minmax(0, 1fr);
+  grid-template-rows: 1fr auto;
+  align-items: start;
+  justify-content: stretch;
+  gap: 16px 14px;
+  padding: 24px;
+  overflow: hidden;
+  border: 1px solid #d7e3e7;
+  border-radius: 14px;
+  background: #ffffff;
+  color: var(--ink);
+  box-shadow: 0 12px 30px rgb(23 39 55 / 5%);
+  cursor: pointer;
+  text-align: left;
+  white-space: normal;
+  transition: border-color 170ms ease, box-shadow 170ms ease, transform 170ms ease;
+}
+
+.experiment-card::after {
+  position: absolute;
+  inset: auto 0 0;
+  width: auto;
+  height: 4px;
+  background: linear-gradient(90deg, var(--teal), var(--navy));
+  content: '';
+  opacity: 0;
+  transition: opacity 170ms ease;
+}
+
+.experiment-card:hover {
+  border-color: #a8cfd1;
+  transform: translateY(-2px);
+}
+
+.experiment-card:focus-visible {
+  border-color: var(--ring);
+  outline: 3px solid rgb(53 169 173 / 24%);
+  outline-offset: 3px;
+}
+
+.experiment-card[data-active] {
+  border-color: var(--teal-deep);
+  background: linear-gradient(145deg, #ffffff 0%, #edf8f7 100%);
+  color: var(--ink);
+  box-shadow: 0 16px 38px rgb(23 111 120 / 13%);
+  transform: translateY(-2px);
+}
+
+.experiment-card[data-active]::after {
+  opacity: 1;
+}
+
+.experiment-index {
+  display: grid;
+  width: 42px;
+  height: 42px;
+  place-items: center;
+  border-radius: 50%;
+  background: #edf4f5;
+  color: #71808e;
+  font-size: 0.76rem;
+  font-weight: 900;
+  letter-spacing: 0.06em;
+  transition: background 170ms ease, color 170ms ease;
+}
+
+.experiment-card[data-active] .experiment-index {
+  background: var(--teal-deep);
+  color: #ffffff;
+}
+
+.experiment-card-copy {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.experiment-card-copy strong {
+  color: var(--navy);
+  font-size: 1.16rem;
+  font-weight: 900;
+  line-height: 1.2;
+}
+
+.experiment-card-copy > span {
+  color: #637687;
+  font-size: 0.83rem;
+  font-weight: 700;
+  line-height: 1.42;
+}
+
+.experiment-metric {
+  display: flex;
+  grid-column: 1 / -1;
+  align-items: baseline;
+  gap: 8px;
+  padding-top: 14px;
+  border-top: 1px solid #e4ecee;
+}
+
+.experiment-metric b {
+  color: var(--teal-deep);
+  font-size: 1.72rem;
+  font-weight: 900;
+  letter-spacing: -0.04em;
+  line-height: 1;
+}
+
+.experiment-metric small {
+  color: #798996;
+  font-size: 0.72rem;
+  font-weight: 900;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+}
+
+.experiment-panel {
+  margin-top: 24px;
+  padding: clamp(22px, 3vw, 34px);
+  border: 1px solid #d7e3e7;
+  border-radius: 15px;
+  background: #ffffff;
+  box-shadow: 0 18px 48px rgb(23 39 55 / 7%);
+  color: var(--foreground);
+  font-size: inherit;
+  animation: panel-in 200ms ease-out;
+}
+
+.experiment-panel-heading {
+  display: grid;
+  grid-template-columns: minmax(260px, 0.8fr) minmax(300px, 1.2fr);
+  gap: 40px;
+  align-items: end;
+  margin-bottom: 28px;
+}
+
+.experiment-panel-heading p {
+  margin: 0 0 4px;
+  color: var(--teal-deep);
+  font-size: 0.74rem;
+  font-weight: 900;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.experiment-panel-heading h3 {
+  margin: 0;
+  color: var(--navy);
+  font-size: clamp(1.4rem, 3vw, 1.95rem);
+  font-weight: 900;
+  letter-spacing: -0.035em;
+  line-height: 1.2;
+}
+
+.experiment-panel-heading > span {
+  color: #566979;
+  font-size: 0.95rem;
+  font-weight: 700;
+  line-height: 1.55;
+}
+
+.experiment-figure {
+  margin: 0;
+}
+
+.experiment-figure img {
+  width: 100%;
+  border-radius: 8px;
+}
+
+.experiment-figure figcaption {
+  max-width: 860px;
+  margin: 18px auto 0;
+  color: #617484;
+  font-size: 0.9rem;
+  line-height: 1.55;
+  text-align: center;
+}
+
+@keyframes panel-in {
+  from {
+    opacity: 0;
+    transform: translateY(5px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .metric-strip {
@@ -610,19 +822,32 @@ img {
     text-align: left;
   }
 
-  .hook-copy,
+  .motivation-copy,
   .method-steps,
   .metric-strip {
     grid-template-columns: 1fr;
   }
 
-  .hook-copy {
+  .motivation-copy {
     gap: 24px;
   }
 
-  .hook-copy p:last-child {
+  .motivation-copy p:last-child {
     padding-top: 2px;
     padding-left: 20px;
+  }
+
+  .experiment-card-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .experiment-card {
+    min-height: 148px;
+  }
+
+  .experiment-panel-heading {
+    grid-template-columns: 1fr;
+    gap: 14px;
   }
 
   .metric-card {
@@ -677,5 +902,11 @@ img {
 
   .resource-button {
     transition: none;
+  }
+
+  .experiment-card,
+  .experiment-panel {
+    transition: none;
+    animation: none;
   }
 }

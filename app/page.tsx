@@ -1,42 +1,9 @@
 import {
-  ArrowDown,
-  FileText,
-  GitCompareArrows,
-  Layers3,
-  ShieldCheck,
-} from 'lucide-react';
-
-const results = [
-  { method: 'Base policy', space: 'Base', nauc: '—', final: '57.8' },
-  { method: 'DSRL', space: 'Noise', nauc: '57.9', final: '66.2' },
-  { method: 'LPS', space: 'Noise', nauc: '41.7', final: '50.2' },
-  { method: 'LP-DS', space: 'Noise', nauc: '59.9', final: '60.5' },
-  { method: 'CNDO', space: 'Noise', nauc: '69.5', final: '81.5', emphasis: 'soft' },
-  { method: 'DICE', space: 'Action', nauc: '68.5', final: '87.3' },
-  { method: 'DSRL + DICE', space: 'Joint', nauc: '68.0', final: '82.6' },
-  { method: 'CANDO', space: 'Joint', nauc: '76.1', final: '91.4', emphasis: 'strong' },
-];
-
-const methodSteps = [
-  {
-    icon: Layers3,
-    eyebrow: '01 · Direction',
-    title: 'Edit the latent, not the backbone',
-    body: 'CNDO learns a state- and noise-conditioned direction around each Gaussian anchor while the pretrained Flow Matching policy remains frozen.',
-  },
-  {
-    icon: ShieldCheck,
-    eyebrow: '02 · Decide',
-    title: 'Execute only trusted edits',
-    body: 'A conservative critic suppresses unsupported value estimates, while a target-critic-supervised gate chooses between the base and noise-edited actions.',
-  },
-  {
-    icon: GitCompareArrows,
-    eyebrow: '03 · Refine',
-    title: 'Correct in action space',
-    body: 'CANDO adds a post-decoding action residual and jointly optimizes both branches at the final edited action.',
-  },
-];
+  Tabs,
+  TabsContent,
+  TabsList,
+  TabsTrigger,
+} from '@/components/ui/tabs';
 
 export default function Home() {
   return (
@@ -45,7 +12,7 @@ export default function Home() {
         <div className="hero-glow hero-glow-left" aria-hidden="true" />
         <div className="hero-glow hero-glow-right" aria-hidden="true" />
         <div className="page-shell hero-inner">
-          <p className="venue">ICRA · Anonymous Submission</p>
+          <p className="venue">ICRA / Anonymous Submission</p>
           <h1 className="publication-title">
             <span className="title-acronym">CANDO</span>
             <span className="title-colon">:</span>{' '}
@@ -55,16 +22,6 @@ export default function Home() {
             </span>
           </h1>
           <p className="authors">Anonymous Authors</p>
-          <div className="publication-links" aria-label="Project resources">
-            <a className="resource-button" href="/cando-paper.pdf" target="_blank" rel="noreferrer">
-              <FileText size={18} aria-hidden="true" />
-              Paper
-            </a>
-            <a className="resource-button resource-button-light" href="#method">
-              <ArrowDown size={18} aria-hidden="true" />
-              Explore the method
-            </a>
-          </div>
         </div>
       </header>
 
@@ -77,12 +34,12 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="page-shell section-block hook-section" id="hook">
+      <section className="page-shell section-block motivation-section" id="motivation">
         <div className="section-heading-row">
-          <h2 className="section-title">Hook</h2>
+          <h2 className="section-title">Motivation</h2>
           <p className="section-kicker">Two intervention points. One stronger policy.</p>
         </div>
-        <div className="hook-copy">
+        <div className="motivation-copy">
           <p>
             Residual reinforcement learning can intervene <strong>before decoding</strong> by steering the generative policy&apos;s input noise, or <strong>after decoding</strong> by correcting its action. The first route preserves structured generation; the second offers direct local control. But simply combining a weak noise learner with a strong action learner does not improve efficiency.
           </p>
@@ -95,7 +52,7 @@ export default function Home() {
             src="/assets/hook-motivation.png"
             width="1644"
             height="579"
-            alt="Motivation comparing noise-space and action-space residual reinforcement learning and showing why naïve joint optimization is insufficient."
+            alt="Motivation comparing noise-space and action-space residual reinforcement learning and showing why naive joint optimization is insufficient."
           />
           <figcaption>
             Noise-space steering modifies a frozen policy before decoding; action-space residual learning corrects the decoded action. Joint learning becomes useful only when both branches are capable learners.
@@ -107,19 +64,6 @@ export default function Home() {
         <div className="section-heading-row">
           <h2 className="section-title">Method</h2>
           <p className="section-kicker">Conservative, gated, and jointly optimized.</p>
-        </div>
-
-        <div className="method-steps">
-          {methodSteps.map(({ icon: Icon, eyebrow, title, body }) => (
-            <article className="method-step" key={eyebrow}>
-              <div className="step-icon" aria-hidden="true">
-                <Icon size={22} strokeWidth={1.8} />
-              </div>
-              <p className="step-eyebrow">{eyebrow}</p>
-              <h3>{title}</h3>
-              <p>{body}</p>
-            </article>
-          ))}
         </div>
 
         <div className="figure-stack">
@@ -153,87 +97,111 @@ export default function Home() {
         <div className="page-shell section-block">
           <div className="section-heading-row">
             <h2 className="section-title">Simulation Results</h2>
-            <p className="section-kicker">Five tasks · three seeds · one frozen backbone per task.</p>
+            <p className="section-kicker">Five tasks / three seeds / one frozen backbone per task.</p>
           </div>
 
-          <div className="metric-strip" aria-label="Key results">
-            <div className="metric-card metric-card-primary">
-              <span className="metric-label">CANDO average NAUC</span>
-              <strong>76.1</strong>
-              <span className="metric-change">+6.6 over the best single-space result</span>
-            </div>
-            <div className="metric-card">
-              <span className="metric-label">Final success rate</span>
-              <strong>91.4%</strong>
-              <span className="metric-change">+4.1 points over DICE</span>
-            </div>
-            <div className="metric-card">
-              <span className="metric-label">CNDO average NAUC</span>
-              <strong>69.5</strong>
-              <span className="metric-change">Competitive with action-space learning</span>
-            </div>
-          </div>
+          <Tabs defaultValue="cndo" className="experiment-tabs">
+            <TabsList className="experiment-card-grid" aria-label="Simulation experiments">
+              <TabsTrigger value="cndo" className="experiment-card">
+                <span className="experiment-index">01</span>
+                <span className="experiment-card-copy">
+                  <strong>CNDO</strong>
+                  <span>Noise-Space Policy Improvement</span>
+                </span>
+                <span className="experiment-metric">
+                  <b>69.5</b>
+                  <small>NAUC</small>
+                </span>
+              </TabsTrigger>
 
-          <div className="results-figures">
-            <figure className="paper-figure compact-figure">
-              <div className="figure-label">Noise-space improvement</div>
-              <img
-                src="/assets/noise-results.png"
-                width="1644"
-                height="342"
-                alt="Success-rate learning curves for noise-space methods on Can, Square, Transport, Peg Insertion and Stack Cube."
-              />
-              <figcaption>
-                CNDO is the strongest noise-space method on average, raising NAUC from 57.9 for DSRL to 69.5.
-              </figcaption>
-            </figure>
+              <TabsTrigger value="ablation" className="experiment-card">
+                <span className="experiment-index">02</span>
+                <span className="experiment-card-copy">
+                  <strong>Ablation Studies</strong>
+                  <span>Conservative Critic and Gated Execution</span>
+                </span>
+                <span className="experiment-metric">
+                  <b>2</b>
+                  <small>Components</small>
+                </span>
+              </TabsTrigger>
 
-            <figure className="paper-figure compact-figure">
-              <div className="figure-label">Joint action-noise optimization</div>
-              <img
-                src="/assets/joint-results.png"
-                width="1644"
-                height="339"
-                alt="Success-rate learning curves comparing single-space and joint residual methods across five tasks."
-              />
-              <figcaption>
-                CANDO delivers the strongest average sample efficiency after CNDO closes the standalone gap to DICE.
-              </figcaption>
-            </figure>
-          </div>
+              <TabsTrigger value="cando" className="experiment-card">
+                <span className="experiment-index">03</span>
+                <span className="experiment-card-copy">
+                  <strong>CANDO</strong>
+                  <span>Action-Noise Joint Residual Learning</span>
+                </span>
+                <span className="experiment-metric">
+                  <b>76.1</b>
+                  <small>NAUC</small>
+                </span>
+              </TabsTrigger>
+            </TabsList>
 
-          <div className="result-table-wrap">
-            <table className="result-table">
-              <caption>Average performance across the five simulation tasks</caption>
-              <thead>
-                <tr>
-                  <th scope="col">Method</th>
-                  <th scope="col">Space</th>
-                  <th scope="col">NAUC ↑</th>
-                  <th scope="col">Final SR ↑</th>
-                </tr>
-              </thead>
-              <tbody>
-                {results.map((row) => (
-                  <tr
-                    key={row.method}
-                    className={
-                      row.emphasis === 'strong'
-                        ? 'result-row-strong'
-                        : row.emphasis === 'soft'
-                          ? 'result-row-soft'
-                          : undefined
-                    }
-                  >
-                    <th scope="row">{row.method}</th>
-                    <td>{row.space}</td>
-                    <td>{row.nauc}</td>
-                    <td>{row.final}%</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
+            <TabsContent value="cndo" className="experiment-panel">
+              <div className="experiment-panel-heading">
+                <div>
+                  <p>Experiment I</p>
+                  <h3>Noise-Space Policy Improvement</h3>
+                </div>
+                <span>CNDO closes the sample-efficiency gap to strong action-space residual learning.</span>
+              </div>
+              <figure className="experiment-figure">
+                <img
+                  src="/assets/noise-learning-curves.png"
+                  width="4042"
+                  height="800"
+                  alt="Noise-space policy learning curves for CNDO and baselines on five simulation tasks."
+                />
+                <figcaption>
+                  CNDO is the strongest noise-space method on average, improving both sample efficiency and final performance across the five tasks.
+                </figcaption>
+              </figure>
+            </TabsContent>
+
+            <TabsContent value="ablation" className="experiment-panel">
+              <div className="experiment-panel-heading">
+                <div>
+                  <p>Experiment II</p>
+                  <h3>Ablation Studies</h3>
+                </div>
+                <span>Both conservative value learning and gated execution are important for robust noise-space improvement.</span>
+              </div>
+              <figure className="experiment-figure">
+                <img
+                  src="/assets/ablation-learning-curves.png"
+                  width="4042"
+                  height="800"
+                  alt="Ablation learning curves for the conservative critic and gated execution components of CNDO."
+                />
+                <figcaption>
+                  Removing either component reduces average NAUC, with the largest failures appearing on Transport and Peg Insertion.
+                </figcaption>
+              </figure>
+            </TabsContent>
+
+            <TabsContent value="cando" className="experiment-panel">
+              <div className="experiment-panel-heading">
+                <div>
+                  <p>Experiment III</p>
+                  <h3>Action-Noise Joint Residual Learning</h3>
+                </div>
+                <span>CANDO jointly exploits complementary improvements from noise and action spaces.</span>
+              </div>
+              <figure className="experiment-figure">
+                <img
+                  src="/assets/joint-learning-curves.png"
+                  width="4042"
+                  height="800"
+                  alt="Joint action-noise residual learning curves for CANDO and baselines on five simulation tasks."
+                />
+                <figcaption>
+                  CANDO reaches 76.1 average NAUC and 91.4% final success rate, outperforming both single-space learners on average.
+                </figcaption>
+              </figure>
+            </TabsContent>
+          </Tabs>
         </div>
       </section>
 
