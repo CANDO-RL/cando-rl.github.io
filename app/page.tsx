@@ -45,7 +45,7 @@ export default function Home() {
           </p>
           <figure className="motivation-side-figure">
             <img
-              src="/assets/hard-constraint.png"
+              src="assets/hard-constraint.png"
               width="2586"
               height="1653"
               alt="Illustration showing how DSRL's hard bounded noise constraint can exclude a high-value latent region."
@@ -54,7 +54,7 @@ export default function Home() {
         </div>
         <figure className="paper-figure wide-figure">
           <img
-            src="/assets/hook-motivation.png"
+            src="assets/hook-motivation.png"
             width="1644"
             height="579"
             alt="Motivation comparing noise-space and action-space residual reinforcement learning and showing why naive joint optimization is insufficient."
@@ -74,7 +74,7 @@ export default function Home() {
         <div className="figure-stack">
           <figure className="paper-figure">
             <img
-              src="/assets/noise-regulation.png"
+              src="assets/noise-regulation.png"
               width="1644"
               height="448"
               alt="Comparison of DSRL, LPS, LP-DS and CNDO noise-space regulation strategies."
@@ -86,7 +86,7 @@ export default function Home() {
 
           <figure className="paper-figure method-figure">
             <img
-              src="/assets/method-overview.png"
+              src="assets/method-overview.png"
               width="1644"
               height="708"
               alt="Overview of CANDO online inference and off-policy learning."
@@ -154,7 +154,7 @@ export default function Home() {
               </div>
               <figure className="experiment-figure">
                 <img
-                  src="/assets/noise-learning-curves.png"
+                  src="assets/noise-learning-curves.png"
                   width="4042"
                   height="800"
                   alt="Noise-space policy learning curves for CNDO and baselines on five simulation tasks."
@@ -175,7 +175,7 @@ export default function Home() {
               </div>
               <figure className="experiment-figure">
                 <img
-                  src="/assets/ablation-learning-curves.png"
+                  src="assets/ablation-learning-curves.png"
                   width="4042"
                   height="800"
                   alt="Ablation learning curves for the conservative critic and gated execution components of CNDO."
@@ -196,7 +196,7 @@ export default function Home() {
               </div>
               <figure className="experiment-figure">
                 <img
-                  src="/assets/joint-learning-curves.png"
+                  src="assets/joint-learning-curves.png"
                   width="4042"
                   height="800"
                   alt="Joint action-noise residual learning curves for CANDO and baselines on five simulation tasks."
