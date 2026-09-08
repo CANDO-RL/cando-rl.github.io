@@ -302,8 +302,9 @@ img {
 
 .motivation-copy {
   display: grid;
-  grid-template-columns: 1.1fr 0.9fr;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   gap: 44px;
+  align-items: center;
   margin-bottom: 34px;
 }
 
@@ -312,10 +313,20 @@ img {
   color: #344456;
 }
 
-.motivation-copy p:last-child {
-  padding-left: 25px;
-  border-left: 3px solid var(--orange);
-  font-weight: 700;
+.motivation-side-figure {
+  margin: 0;
+  padding: 12px;
+  border: 1px solid #dce5e9;
+  border-radius: 12px;
+  background: #ffffff;
+  box-shadow: 0 12px 34px rgb(23 39 55 / 7%);
+}
+
+.motivation-side-figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 7px;
 }
 
 .paper-figure {
@@ -830,11 +841,6 @@ img {
 
   .motivation-copy {
     gap: 24px;
-  }
-
-  .motivation-copy p:last-child {
-    padding-top: 2px;
-    padding-left: 20px;
   }
 
   .experiment-card-grid {

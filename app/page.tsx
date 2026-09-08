@@ -41,11 +41,16 @@ export default function Home() {
         </div>
         <div className="motivation-copy">
           <p>
-            Residual reinforcement learning can intervene <strong>before decoding</strong> by steering the generative policy&apos;s input noise, or <strong>after decoding</strong> by correcting its action. The first route preserves structured generation; the second offers direct local control. But simply combining a weak noise learner with a strong action learner does not improve efficiency.
+            Residual RL can adapt a frozen generative policy before decoding through noise-space steering or after decoding through action-space correction. This motivates two questions: can noise-space learning match the sample efficiency of action-space learning, and can both spaces be jointly optimized for further gains? Existing noise-space methods use hard geometric constraints for stability, which may exclude valuable latent directions and limit sample efficiency. Meanwhile, naively combining a weak noise learner with a strong action learner provides little additional benefit.
           </p>
-          <p>
-            CANDO starts by closing that capability gap with CNDO, then jointly optimizes both spaces so that each branch contributes where it is strongest.
-          </p>
+          <figure className="motivation-side-figure">
+            <img
+              src="/assets/hard-constraint.png"
+              width="2586"
+              height="1653"
+              alt="Illustration showing how DSRL's hard bounded noise constraint can exclude a high-value latent region."
+            />
+          </figure>
         </div>
         <figure className="paper-figure wide-figure">
           <img
