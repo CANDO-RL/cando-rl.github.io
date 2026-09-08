@@ -37,7 +37,6 @@ export default function Home() {
       <section className="page-shell section-block motivation-section" id="motivation">
         <div className="section-heading-row">
           <h2 className="section-title">Motivation</h2>
-          <p className="section-kicker">Two intervention points. One stronger policy.</p>
         </div>
         <div className="motivation-copy">
           <p>
@@ -68,7 +67,6 @@ export default function Home() {
       <section className="page-shell section-block" id="method">
         <div className="section-heading-row">
           <h2 className="section-title">Method</h2>
-          <p className="section-kicker">Conservative, gated, and jointly optimized.</p>
         </div>
 
         <div className="figure-stack">
@@ -102,7 +100,6 @@ export default function Home() {
         <div className="page-shell section-block">
           <div className="section-heading-row">
             <h2 className="section-title">Simulation Results</h2>
-            <p className="section-kicker">Five tasks / three seeds / one frozen backbone per task.</p>
           </div>
 
           <Tabs defaultValue="cndo" className="experiment-tabs">
