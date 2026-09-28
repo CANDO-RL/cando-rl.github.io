@@ -4,6 +4,9 @@ import {
   TabsList,
   TabsTrigger,
 } from '@/components/ui/tabs';
+import { RealWorldEvaluationBrowser } from '@/components/real-world-evaluation-browser';
+import { SimulationVideoBrowser } from '@/components/simulation-video-browser';
+import { SilentVideo } from '@/components/silent-video';
 
 export default function Home() {
   return (
@@ -32,6 +35,20 @@ export default function Home() {
             Pretrained generative policies provide strong behavior priors for robot control, yet adapting them efficiently with online reinforcement learning remains difficult. Existing noise-space residual methods often rely on fixed feasibility constraints that are poorly aligned with behavioral value, while action-space residual methods leave complementary latent structure unused. We introduce <strong>Conservative Noise Directional Optimization (CNDO)</strong>, which learns directions around Gaussian latent samples and regulates them with conservative value estimation and gated execution instead of a hard latent region. We then propose <strong>Conservative Action-Noise Directional Optimization (CANDO)</strong>, adding a local action-space residual to combine structured latent improvement with post-decoding correction. Across five manipulation tasks, CANDO reaches <strong>76.1 NAUC</strong> and <strong>91.4% final success</strong>, outperforming the strongest single-space result by 6.6 NAUC and 4.1 success-rate points.
           </p>
         </div>
+        <figure className="main-video-frame">
+          <video
+            controls
+            autoPlay
+            loop
+            muted
+            playsInline
+            preload="metadata"
+            aria-label="CANDO project overview video"
+          >
+            <source src="assets/cando-video.mp4" type="video/mp4" />
+            Your browser does not support the video element.
+          </video>
+        </figure>
       </section>
 
       <section className="page-shell section-block motivation-section" id="motivation">
@@ -54,8 +71,8 @@ export default function Home() {
         <figure className="paper-figure wide-figure">
           <img
             src="assets/hook-motivation.png"
-            width="1644"
-            height="579"
+            width="3463"
+            height="1205"
             alt="Motivation comparing noise-space and action-space residual reinforcement learning and showing why naive joint optimization is insufficient."
           />
           <figcaption>
@@ -73,8 +90,8 @@ export default function Home() {
           <figure className="paper-figure">
             <img
               src="assets/noise-regulation.png"
-              width="1644"
-              height="448"
+              width="3600"
+              height="1033"
               alt="Comparison of DSRL, LPS, LP-DS and CNDO noise-space regulation strategies."
             />
             <figcaption>
@@ -85,8 +102,8 @@ export default function Home() {
           <figure className="paper-figure method-figure">
             <img
               src="assets/method-overview.png"
-              width="1644"
-              height="708"
+              width="2481"
+              height="1063"
               alt="Overview of CANDO online inference and off-policy learning."
             />
             <figcaption>
@@ -194,8 +211,8 @@ export default function Home() {
               <figure className="experiment-figure">
                 <img
                   src="assets/joint-learning-curves.png"
-                  width="4042"
-                  height="800"
+                  width="2526"
+                  height="500"
                   alt="Joint action-noise residual learning curves for CANDO and baselines on five simulation tasks."
                 />
                 <figcaption>
@@ -204,12 +221,65 @@ export default function Home() {
               </figure>
             </TabsContent>
           </Tabs>
+
+          <SimulationVideoBrowser />
         </div>
       </section>
 
       <section className="page-shell section-block real-world-section" id="real-world-results">
         <h2 className="section-title">Real World Results</h2>
-        <div className="real-world-space" aria-label="Real-world results intentionally left blank" />
+
+        <div className="real-world-results">
+          <article className="real-world-part">
+            <div className="real-world-part-heading">
+              <h3>Real-world Tasks</h3>
+            </div>
+            <div className="real-world-task-grid">
+              <figure className="real-world-task-video">
+                <span className="video-speed-badge">2× Speed</span>
+                <SilentVideo
+                  src="assets/real-world/tasks/make-juice.mp4"
+                  label="Make Juice real-world task"
+                />
+                <figcaption>Make Juice</figcaption>
+              </figure>
+
+              <figure className="real-world-task-video">
+                <span className="video-speed-badge">2× Speed</span>
+                <SilentVideo
+                  src="assets/real-world/tasks/collect-juice.mp4"
+                  label="Collect Juice real-world task"
+                />
+                <figcaption>Collect Juice</figcaption>
+              </figure>
+
+              <figure className="real-world-task-video">
+                <span className="video-speed-badge">2× Speed</span>
+                <SilentVideo
+                  src="assets/real-world/tasks/cook-meal.mp4"
+                  label="Cook Meal real-world task"
+                />
+                <figcaption>Cook Meal</figcaption>
+              </figure>
+
+              <figure className="real-world-task-video">
+                <span className="video-speed-badge">2× Speed</span>
+                <SilentVideo
+                  src="assets/real-world/tasks/plate-food.mp4"
+                  label="Plate Food real-world task"
+                />
+                <figcaption>Plate Food</figcaption>
+              </figure>
+            </div>
+          </article>
+
+          <article className="real-world-part">
+            <div className="real-world-part-heading">
+              <h3>Real-world Evaluation</h3>
+            </div>
+            <RealWorldEvaluationBrowser />
+          </article>
+        </div>
       </section>
 
       <footer className="site-footer">
